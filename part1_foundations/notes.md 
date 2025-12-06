@@ -1,0 +1,189 @@
+# Part I — Foundations of Network Modeling
+*Notes based on my understanding of the lecture material.*
+
+---
+
+## 1. What Is a Network Model?
+
+A **network model** describes how a network is generated.  
+Formally, it specifies a probability distribution over all possible networks:
+
+> P(X; θ), with X in the set of all possible networks 𝓧.
+
+Where:
+
+- X is a network (often represented as an adjacency matrix)  
+- θ are model parameters  
+
+A good network model helps answer:
+
+- Why does a network look the way it does?  
+- Which mechanisms shape its structure?  
+- How do micro-level decisions create macro-level network patterns?  
+
+Network models can be:
+
+- **Descriptive** — summarizing structure  
+- **Generative** — simulating networks with specific properties  
+- **Inferential** — testing hypotheses about mechanisms  
+
+---
+
+## 2. Stylized Network Models
+
+Stylized models are simplified generative models used to illustrate how simple mechanisms create global network patterns.  
+They help link micro rules with macro structures.
+
+---
+
+### 2.1 Erdős–Rényi Random Graphs (ER)
+
+Assumptions:
+
+- Each dyad forms **independently**  
+- All dyads have the **same probability p** of having a tie  
+
+Consequences:
+
+- Randomly distributed ties  
+- Narrow degree distribution  
+- Low clustering  
+- Very few triangles  
+- Unrealistic compared to social networks  
+
+**Use case:** baseline or null model.
+
+---
+
+### 2.2 Regular Lattice
+
+Nodes are arranged in geometric space and connected to neighbors.
+
+Characteristics:
+
+- High clustering  
+- Very long path lengths  
+- No degree variation  
+- Unrealistic for social networks  
+
+---
+
+### 2.3 Small-World Networks (Watts–Strogatz)
+
+Process:
+
+1. Start with a lattice  
+2. Randomly rewire a small proportion of edges  
+
+Outcomes:
+
+- High clustering  
+- Short path lengths (“small-world effect”)  
+- Still not realistic degree variation  
+- Weak community structure  
+
+---
+
+## 3. CUG Tests (Conditional Uniform Graph Tests)
+
+CUG tests evaluate whether an observed network statistic is unusual relative to a null model.
+
+### 3.1 When to use CUG tests?
+
+To test whether observed structure is “too high” or “too low” compared to random networks, for example:
+
+- Reciprocity  
+- Density  
+- Number of triangles  
+- Clustering coefficient  
+
+### 3.2 How CUG works
+
+1. Choose a null model (e.g., fix density or degree sequence).  
+2. Generate many random networks under that null.  
+3. Compute the statistic for each simulated network.  
+4. Compare the observed statistic to the null distribution.  
+
+### 3.3 Interpretation
+
+If the observed value lies in a tail of the null distribution:  
+
+- It is unlikely to arise by chance.  
+- This suggests underlying structural mechanisms beyond the constraints of the null model.
+
+---
+
+## 4. Quadratic Assignment Procedure (QAP)
+
+QAP tests **dyadic associations** while accounting for network autocorrelation.  
+Because dyads are not independent, standard regression is invalid.
+
+### 4.1 Bivariate QAP
+
+Given:
+
+- X: dependent network  
+- Z: predictor network or dyadic variable  
+
+Steps:
+
+1. Compute an association between X and Z (e.g., correlation or regression coefficient).  
+2. Permute node labels repeatedly to generate reshuffled versions of the network.  
+3. Recalculate the association for each permutation.  
+4. Compare the observed value to the permutation distribution.  
+
+This produces valid p-values under dyadic dependence.
+
+---
+
+### 4.2 Multiple Regression QAP (MR-QAP)
+
+Allows multiple predictors:
+
+> logit( P(X_ij = 1) ) = θ₀ + θ₁ Z₁,ij + … + θ_k Z_k,ij.
+
+Permutation techniques:
+
+- **Freedman–Lane residual permutation**  
+- **Double semi-partialling (Dekker et al.)**  
+
+These strategies handle collinearity among predictors and give more reliable p-values.
+
+---
+
+### 4.3 Why MR-QAP is useful
+
+- Handles non-independent dyads.  
+- Tests homophily, role effects, proximity, multiplexity.  
+- Coefficients are easy to interpret.  
+- More flexible than simple CUG tests.  
+- Useful as an exploratory method before ERGM/SAOM.
+
+---
+
+## 5. Typical Hypotheses in QAP
+
+Examples:
+
+- **Homophily:** same office or same school → higher probability of a tie.  
+- **Multiplexity:** friendship ties → higher probability of an advice tie.  
+- **Role effects:** seniority differences → directional advice patterns.  
+- **Proximity:** same group or department → collaboration ties.  
+
+These ideas are encoded as dyadic matrices used as predictors in QAP.
+
+---
+
+## 6. Key Takeaways from Part I
+
+- Stylized models reveal how simple rules can produce complex network structures.  
+- CUG tests evaluate whether observed structure is surprising under a chosen null model.  
+- QAP handles dyadic dependencies and allows hypothesis testing on networks.  
+- MR-QAP supports multivariate modeling with permutation-based inference.  
+- These foundations prepare the ground for:
+  - **ERGMs (Part II)**  
+  - **SAOMs (Part III)**  
+
+---
+
+These notes represent my personal understanding and do not reproduce course materials.
