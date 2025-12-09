@@ -57,12 +57,12 @@ Included networks and attributes:
 Used to test relationships between two dyadic matrices.  
 We estimate something like:
 
+
 ```math
-$$
-\text{advice}_{ij}
+\mathrm{advice}_{ij}
 =
-\beta_0 + \beta_1\, \text{friendship}_{ij} + \varepsilon_{ij}
-$$
+\beta_0 + \beta_1\, \mathrm{friendship}_{ij} + \varepsilon_{ij}
+
 
 Steps:
 
@@ -108,11 +108,10 @@ Standard GLM / logistic regression tends to **overestimate significance** and gi
 
 Model:
 
-$$
+```math
 \text{advice}_{ij}
 =
 \beta_0 + \beta_1 \,\text{friendship}_{ij} + \varepsilon_{ij}
-$$
 
 **Result summary (my output):**
 
