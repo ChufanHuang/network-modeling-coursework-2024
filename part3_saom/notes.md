@@ -194,7 +194,7 @@ Covariates can be:
 
 SAOM treats each panel interval $[t_m, t_{m+1}]$ as the realization of many small micro-steps.
 
----
+
 
 ## 10. Model Assumptions (from the lecture)
 
@@ -206,7 +206,7 @@ Main assumptions:
 4. Each actor can change only their **outgoing** ties.  
 5. Actors have **full knowledge** of the network when evaluating changes.
 
----
+
 
 ## 11. Estimation via Simulation (RSiena)
 
@@ -224,7 +224,7 @@ Idea:
 
 This is done with a **Method of Moments (MoM)** approach plus **stochastic approximation**.
 
----
+
 
 ## 12. Method of Moments (MoM)
 
@@ -244,7 +244,7 @@ $$
 
 This is solved iteratively using a Robbins–Monro type update.
 
----
+
 ## 13. Robbins–Monro Stochastic Approximation
 
 Given parameter estimate \(\hat{\theta}_i\) at iteration \(i\), with simulated statistics \(S_i\),  
@@ -267,7 +267,7 @@ where:
 
 The algorithm converges once simulated and observed statistics become sufficiently close.
 
----
+
 
 ## 14. Convergence Criteria
 
@@ -299,7 +299,7 @@ T = (S - s)^{\top} \Sigma^{-1} (S - s)
 
 where \(\Sigma\) is the covariance matrix of simulated statistics.
 
----
+
 
 ## 15. Multi-Period SAOM
 
@@ -338,7 +338,7 @@ s_k\!\left( X(t_m) \right)
 
 where \(s_k(\cdot)\) is the statistic for effect \(k\) on a single network.
 
----
+
 
 
 
@@ -361,7 +361,7 @@ This lecture clarified several important aspects of SAOMs:
   Robbins–Monro approximation.
 - Convergence must be assessed through t-ratios and simulation diagnostics.
 
----
+
 
 ## 17. Reference
 
