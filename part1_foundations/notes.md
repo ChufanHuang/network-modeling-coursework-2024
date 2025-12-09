@@ -15,9 +15,10 @@ P(X \mid \theta), \quad X \in \mathcal{X}
 
 Where:
 
-- \(X\): a network (often represented as an adjacency matrix)
-- \(\theta\): model parameters (e.g., density, reciprocity, transitivity terms)
-- \(\mathcal{X}\): set of all possible networks on a fixed node set
+- $m(x)$: number of realized edges in network $x$
+- $M = \frac{N(N-1)}{2}$ (undirected, no self-loops) or $M = N(N-1)$ (directed)
+
+- $\mathcal{X}\$: set of all possible networks on a fixed node set
 
 A good network model helps answer:
 
