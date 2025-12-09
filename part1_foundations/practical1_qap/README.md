@@ -57,7 +57,9 @@ This widely used dataset contains:
 Used to test relationships between two dyadic matrices.  
 We estimate something like:
 
+```math
 `advice_ij = b0 + b1 * friendship_ij + error_ij`
+```
 
 Steps:
 
