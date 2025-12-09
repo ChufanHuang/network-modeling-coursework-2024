@@ -112,7 +112,7 @@ Model:
 \text{advice}_{ij}
 =
 \beta_0 + \beta_1 \,\text{friendship}_{ij} + \varepsilon_{ij}
-
+```
 **Result summary (my output):**
 
 - $\beta_1$ (friendship) was **positive** and significant under 1000 permutations.  
