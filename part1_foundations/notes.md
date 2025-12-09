@@ -2,7 +2,7 @@
 
 *Notes based on my understanding of the first lectures (introduction, stylized models, CUG tests). Any mistakes are mine.*
 
----
+
 
 ## 1. What Is a Network Model?
 
@@ -25,14 +25,14 @@ A good network model helps answer:
 - Which micro-level mechanisms shape its structure?
 - How do individual decisions create macro-level network patterns?
 
----
+
 
 ## 2. Stylized Network Models
 
 Stylized models are simplified generative models used to illustrate how simple rules can produce complex network structures.  
 They link **micro mechanisms** with **macro properties**.
 
----
+
 
 ### 2.1 Erdős–Rényi Random Graphs (ER)
 
@@ -61,7 +61,7 @@ Where:
 - No community structure
 - Mainly useful as a **null model** or baseline
 
----
+
 
 ### 2.2 Configuration-Type Models
 
@@ -77,7 +77,7 @@ Examples:
 Intuition:  
 Introduce **heterogeneity in popularity/activity** while still being relatively simple.
 
----
+
 
 ## 3. CUG Tests (Conditional Uniform Graph Tests)
 
@@ -96,7 +96,7 @@ If the observed statistic is in the extreme tail, it suggests that:
 
 So CUG tests tell us whether a pattern (like high clustering or strong centralization) is **more than we would expect by chance**, given some basic constraints (like density or degrees).
 
----
+
 
 ## 4. QAP: Motivation (Preview)
 
@@ -114,7 +114,7 @@ In network data, dyads (pairs of nodes) are typically **dependent**:
 
 This is developed in detail in **Practical 1**.
 
----
+
 
 ## 5. My Take-aways from Part I
 
