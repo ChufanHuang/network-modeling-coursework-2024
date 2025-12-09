@@ -62,6 +62,8 @@ We estimate something like:
 \text{advice}_{ij}
 =
 \beta_0 + \beta_1 \,\text{friendship}_{ij} + \varepsilon_{ij}
+```
+
 Steps:
 
 1. Compute the regression coefficient between the two networks.  
