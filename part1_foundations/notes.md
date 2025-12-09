@@ -9,9 +9,9 @@
 A **network model** describes how a network is generated.  
 Formally, it specifies a probability distribution over all possible networks:
 
-\[
+```math
 P(X \mid \theta), \quad X \in \mathcal{X}
-\]
+```
 
 Where:
 
@@ -39,14 +39,14 @@ They link **micro mechanisms** with **macro properties**.
 **Model:**  
 Each possible edge between \(N\) nodes appears **independently** with probability \(p\).
 
-\[
+```math
 P(X = x) = p^{m(x)} (1-p)^{M - m(x)}
-\]
+```
 
 Where:
 
 - \(m(x)\): number of realized edges in network \(x\)
-- \(M = \frac{N(N-1)}{2}\) (undirected, no self-loops) or \(M = N(N-1)\) (directed)
+- \(M = \frac{N(N-1)}{2}\) (undirected, no self-loops), or \(M = N(N-1)\) (directed)
 
 **Assumptions:**
 
@@ -55,11 +55,11 @@ Where:
 
 **Consequences:**
 
-- Randomly distributed ties
-- Binomial / Poisson-like degree distribution
-- Low clustering (very few triangles)
-- No community structure
-- Mainly useful as a **null model** or baseline
+- Randomly distributed ties  
+- Binomial / Poisson-like degree distribution  
+- Low clustering (very few triangles)  
+- No community structure  
+- Mainly useful as a **null model** or baseline  
 
 
 
