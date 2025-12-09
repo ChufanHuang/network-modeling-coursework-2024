@@ -274,13 +274,13 @@ This is solved iteratively using a Robbins–Monro type update.
 Given parameter estimate \(\hat{\theta}_i\) at iteration \(i\), with simulated statistics \(S_i\),  
 the Robbins–Monro update is:
 
-\[
+```math
 \hat{\theta}_{i+1}
 =
 \hat{\theta}_{i}
 -
 a_i\, D^{-1}\, ( S_i - s )
-\]
+```
 
 where:
 
@@ -297,11 +297,11 @@ The algorithm converges once simulated and observed statistics become sufficient
 
 For each effect \(k\), SAOM estimation uses a *t-ratio*:
 
-\[
+```math
 t_{\text{conv},k}
 =
 \frac{ S_k - s_k }{ \mathrm{sd}(S_k) }
-\]
+```
 
 where:
 
@@ -311,15 +311,15 @@ where:
 
 A typical convergence threshold:
 
-\[
-|t_{\text{conv},k}| \le 0.1 \quad \text{for all } k.
-\]
+```math
+|t_{\text{conv},k}| \le 0.1
+```
 
 Sometimes an overall discrepancy statistic is used:
 
-\[
+```math
 T = (S - s)^{\top} \Sigma^{-1} (S - s)
-\]
+```
 
 where \(\Sigma\) is the covariance matrix of simulated statistics.
 
@@ -329,41 +329,38 @@ where \(\Sigma\) is the covariance matrix of simulated statistics.
 
 With \(M\) observation waves, the parameter vector is:
 
-\[
+```math
 \theta = (\tau_1,\dots,\tau_{M-1},\ \beta_1,\dots,\beta_K)
-\]
+```
 
 where:
 
 - \(\tau_m\): rate parameters for period \([t_m, t_{m+1}]\)  
-- \(\beta_k\): evaluation parameters for structural/covariate effects  
+- \(\beta_k\): evaluation parameters for structural / covariate effects  
 
 A rate statistic for period \(m\) is:
 
-\[
+```math
 S_{\tau_m}
 =
 \sum_{i,j}
 \left|
 X_{ij}(t_{m+1}) - X_{ij}(t_m)
 \right|
-\]
+```
 
 representing the number of tie changes in the interval.
 
 Evaluation statistics aggregate across waves:
 
-\[
+```math
 S_k
 =
 \sum_{m=1}^{M}
 s_k\!\left( X(t_m) \right)
-\]
+```
 
 where \(s_k(\cdot)\) is the statistic for effect \(k\) on a single network.
-
-
-
 
 
 
