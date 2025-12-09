@@ -91,7 +91,6 @@ Interpretation:
 - If $\beta_k > 0$ and $s_{ki}(x)$ increases, the configuration becomes **more attractive**.
 - If $\beta_k < 0$, the configuration is **penalized**.
 
----
 ## 6. Example Effect Statistics
 
 Some examples from the lecture:
@@ -101,75 +100,56 @@ Some examples from the lecture:
 ### 6.1 Structural Effects
 
 - **Outdegree (density)**  
-  \[
-  s_{\text{outdeg},i}(x) = \sum_j x_{ij}
-  \]
+  $$ s_{\text{outdeg},i}(x) = \sum_j x_{ij} $$
 
 - **Reciprocity**  
-  \[
-  s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji}
-  \]
+  $$ s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji} $$
 
 - **Transitive triplets**  
-  \[
-  s_{\text{transTrip},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{ih}
-  \]
+  $$ s_{\text{transTrip},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{ih} $$
 
 - **3-cycles**  
-  \[
-  s_{\text{cycle3},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{hi}
-  \]
+  $$ s_{\text{cycle3},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{hi} $$
 
 ---
 
 ### 6.2 Covariate-Based Effects
 
-Let \( v_j \) be a dummy variable (e.g., \( v_j = 1 \) if \( j \) is female):
+Let $v_j$ be a dummy variable (e.g., $v_j = 1$ if $j$ is female):
 
-- **Ego effect (actor \( i \)’s own value)**  
-  \[
-  s_{\text{ego},i}(x) = v_i \sum_j x_{ij}
-  \]
+- **Ego effect (actor $i$’s own value)**  
+  $$ s_{\text{ego},i}(x) = v_i \sum_j x_{ij} $$
 
 - **Alter effect (preference for others with a certain value)**  
-  \[
-  s_{\text{alter},i}(x) = \sum_j x_{ij} v_j
-  \]
+  $$ s_{\text{alter},i}(x) = \sum_j x_{ij} v_j $$
 
 - **Homophily effect**  
-  \[
-  s_{\text{homo},i}(x) = \sum_j x_{ij} \mathbf{1}(v_i = v_j)
-  \]
-  where \( \mathbf{1}(\cdot) \) is the indicator function.
+  $$ s_{\text{homo},i}(x) = \sum_j x_{ij} \mathbf{1}(v_i = v_j) $$  
+  where $\mathbf{1}(\cdot)$ is the indicator function.
 
 ---
 
-
-
 ## 7. Choice Probability for Tie Changes
 
-Suppose actor \( i \) has the opportunity to change one outgoing tie.  
-They can toggle a tie to any \( j \), or possibly do nothing.
+Suppose actor $i$ has the opportunity to change one outgoing tie.  
+They can toggle a tie to any $j$, or possibly do nothing.
 
-For a candidate network \( x^{(ij)} \) (after toggling \( i \to j \)), define its objective:
+For a candidate network $x^{(ij)}$ (after toggling $i \to j$), define its objective:
 
-\[
-f(i, x^{(ij)}, \beta)
-\]
+$$ f(i, x^{(ij)}, \beta) $$
 
-The **multinomial choice probability** of choosing \( j \) is:
+The **multinomial choice probability** of choosing $j$ is:
 
-\[
+$$
 P(i \to j \mid x, \beta)
 =
 \frac{\exp\!\left( f(i, x^{(ij)}, \beta) \right)}
 {\sum_{k} \exp\!\left( f(i, x^{(ik)}, \beta) \right)}
-\]
+$$
 
-Higher objective values \( \Rightarrow \) higher probability of choosing that tie change.
+Higher objective values $\Rightarrow$ higher probability of choosing that tie change.
 
 ---
-
 
 ## 8. Rate Function (How Often Actors Can Change Ties)
 
@@ -178,25 +158,26 @@ The **rate function** gives the expected number of opportunities per unit time.
 
 A simple specification:
 
-\[
+$$
 \tau_i(x, \gamma)
 =
 \exp\!\left( \gamma_0 + \sum_k \gamma_k\, r_{ki}(x) \right)
-\]
+$$
 
-where \( r_{ki}(x) \) are rate-related statistics and \( \gamma \) are rate parameters.
+where $r_{ki}(x)$ are rate-related statistics and $\gamma$ are rate parameters.
 
-The **intensity** of changing tie \( i \to j \) is then:
+The **intensity** of changing tie $i \to j$ is then:
 
-\[
+$$
 \lambda_{ij}(x;\, \beta, \gamma)
 =
 \tau_i(x, \gamma) \cdot P(i \to j \mid x, \beta)
-\]
+$$
 
 This defines a **continuous-time Markov process** on the space of networks.
 
 ---
+
 
 
 ## 9. Panel Data Setup
