@@ -1,5 +1,6 @@
 # Part I — Foundations of Network Modeling
-*Notes based on my understanding of the lecture material.*
+
+*Notes based on my understanding of the first lectures (introduction, stylized models, CUG tests). Any mistakes are mine.*
 
 ---
 
@@ -8,182 +9,118 @@
 A **network model** describes how a network is generated.  
 Formally, it specifies a probability distribution over all possible networks:
 
-> P(X; θ), with X in the set of all possible networks 𝓧.
+\[
+P(X \mid \theta), \quad X \in \mathcal{X}
+\]
 
 Where:
 
-- X is a network (often represented as an adjacency matrix)  
-- θ are model parameters  
+- \(X\): a network (often represented as an adjacency matrix)
+- \(\theta\): model parameters (e.g., density, reciprocity, transitivity terms)
+- \(\mathcal{X}\): set of all possible networks on a fixed node set
 
 A good network model helps answer:
 
-- Why does a network look the way it does?  
-- Which mechanisms shape its structure?  
-- How do micro-level decisions create macro-level network patterns?  
-
-Network models can be:
-
-- **Descriptive** — summarizing structure  
-- **Generative** — simulating networks with specific properties  
-- **Inferential** — testing hypotheses about mechanisms  
+- Why does a given network look the way it does?
+- Which micro-level mechanisms shape its structure?
+- How do individual decisions create macro-level network patterns?
 
 ---
 
 ## 2. Stylized Network Models
 
-Stylized models are simplified generative models used to illustrate how simple mechanisms create global network patterns.  
-They help link micro rules with macro structures.
+Stylized models are simplified generative models used to illustrate how simple rules can produce complex network structures.  
+They link **micro mechanisms** with **macro properties**.
 
 ---
 
 ### 2.1 Erdős–Rényi Random Graphs (ER)
 
-Assumptions:
+**Model:**  
+Each possible edge between \(N\) nodes appears **independently** with probability \(p\).
 
-- Each dyad forms **independently**  
-- All dyads have the **same probability p** of having a tie  
+\[
+P(X = x) = p^{m(x)} (1-p)^{M - m(x)}
+\]
 
-Consequences:
+Where:
 
-- Randomly distributed ties  
-- Narrow degree distribution  
-- Low clustering  
-- Very few triangles  
-- Unrealistic compared to social networks  
+- \(m(x)\): number of realized edges in network \(x\)
+- \(M = \frac{N(N-1)}{2}\) (undirected, no self-loops) or \(M = N(N-1)\) (directed)
 
-**Use case:** baseline or null model.
+**Assumptions:**
 
----
+- All dyads are **independent**
+- All dyads have the **same probability** \(p\)
 
-### 2.2 Regular Lattice
+**Consequences:**
 
-Nodes are arranged in geometric space and connected to neighbors.
-
-Characteristics:
-
-- High clustering  
-- Very long path lengths  
-- No degree variation  
-- Unrealistic for social networks  
+- Randomly distributed ties
+- Binomial / Poisson-like degree distribution
+- Low clustering (very few triangles)
+- No community structure
+- Mainly useful as a **null model** or baseline
 
 ---
 
-### 2.3 Small-World Networks (Watts–Strogatz)
+### 2.2 Configuration-Type Models
 
-Process:
+These models fix (or approximate) the **degree sequence**.
 
-1. Start with a lattice  
-2. Randomly rewire a small proportion of edges  
+Examples:
 
-Outcomes:
+- **Fixed-degree models**: networks are drawn uniformly from all graphs with a given degree sequence
+- **Preferential attachment** (Barabási–Albert type):
+  - New nodes attach with probability proportional to degree
+  - Generates **heavy-tailed degree distributions** (“rich get richer”)
 
-- High clustering  
-- Short path lengths (“small-world effect”)  
-- Still not realistic degree variation  
-- Weak community structure  
+Intuition:  
+Introduce **heterogeneity in popularity/activity** while still being relatively simple.
 
 ---
 
 ## 3. CUG Tests (Conditional Uniform Graph Tests)
 
-CUG tests evaluate whether an observed network statistic is unusual relative to a null model.
+CUG tests are used to assess whether an observed network statistic is **unusual** compared to a reference distribution under some null model.
 
-### 3.1 When to use CUG tests?
+**Idea:**
 
-To test whether observed structure is “too high” or “too low” compared to random networks, for example:
+1. Specify a null model (e.g., ER with same density, or random graphs with same degree sequence).
+2. Simulate many networks from this null.
+3. Compute the statistic of interest (e.g., number of triangles, degree centralization) for each simulated network.
+4. Compare the observed statistic to this null distribution.
 
-- Reciprocity  
-- Density  
-- Number of triangles  
-- Clustering coefficient  
+If the observed statistic is in the extreme tail, it suggests that:
 
-### 3.2 How CUG works
+> “Under the chosen null model, this pattern would be very unlikely.”
 
-1. Choose a null model (e.g., fix density or degree sequence).  
-2. Generate many random networks under that null.  
-3. Compute the statistic for each simulated network.  
-4. Compare the observed statistic to the null distribution.  
-
-### 3.3 Interpretation
-
-If the observed value lies in a tail of the null distribution:  
-
-- It is unlikely to arise by chance.  
-- This suggests underlying structural mechanisms beyond the constraints of the null model.
+So CUG tests tell us whether a pattern (like high clustering or strong centralization) is **more than we would expect by chance**, given some basic constraints (like density or degrees).
 
 ---
 
-## 4. Quadratic Assignment Procedure (QAP)
+## 4. QAP: Motivation (Preview)
 
-QAP tests **dyadic associations** while accounting for network autocorrelation.  
-Because dyads are not independent, standard regression is invalid.
+Standard regression assumes observations are **independent**.  
+In network data, dyads (pairs of nodes) are typically **dependent**:
 
-### 4.1 Bivariate QAP
+- If \(i\) is friends with \(j\), that may influence ties with \(k\)
+- Triangles, reciprocity, and popularity all create dependencies
 
-Given:
+**Quadratic Assignment Procedures (QAP)** address this by:
 
-- X: dependent network  
-- Z: predictor network or dyadic variable  
+- Estimating regression coefficients on dyadic data
+- Using **permutations of node labels** to construct a valid null distribution
+- Producing permutation-based \(p\)-values that respect network dependence
 
-Steps:
-
-1. Compute an association between X and Z (e.g., correlation or regression coefficient).  
-2. Permute node labels repeatedly to generate reshuffled versions of the network.  
-3. Recalculate the association for each permutation.  
-4. Compare the observed value to the permutation distribution.  
-
-This produces valid p-values under dyadic dependence.
+This is developed in detail in **Practical 1**.
 
 ---
 
-### 4.2 Multiple Regression QAP (MR-QAP)
+## 5. My Take-aways from Part I
 
-Allows multiple predictors:
+- Network models formalize intuitive mechanisms (e.g., “popular people get more ties”) as **probabilistic generative models**.
+- Erdős–Rényi graphs are too simple for real social networks but very useful as a **baseline** for comparison.
+- CUG tests help decide if features like clustering or centralization are unusually strong, given basic constraints.
+- Many standard statistical tools break down because of **dyadic dependence**, which motivates QAP, ERGMs, and SAOMs later in the course.
 
-> logit( P(X_ij = 1) ) = θ₀ + θ₁ Z₁,ij + … + θ_k Z_k,ij.
-
-Permutation techniques:
-
-- **Freedman–Lane residual permutation**  
-- **Double semi-partialling (Dekker et al.)**  
-
-These strategies handle collinearity among predictors and give more reliable p-values.
-
----
-
-### 4.3 Why MR-QAP is useful
-
-- Handles non-independent dyads.  
-- Tests homophily, role effects, proximity, multiplexity.  
-- Coefficients are easy to interpret.  
-- More flexible than simple CUG tests.  
-- Useful as an exploratory method before ERGM/SAOM.
-
----
-
-## 5. Typical Hypotheses in QAP
-
-Examples:
-
-- **Homophily:** same office or same school → higher probability of a tie.  
-- **Multiplexity:** friendship ties → higher probability of an advice tie.  
-- **Role effects:** seniority differences → directional advice patterns.  
-- **Proximity:** same group or department → collaboration ties.  
-
-These ideas are encoded as dyadic matrices used as predictors in QAP.
-
----
-
-## 6. Key Takeaways from Part I
-
-- Stylized models reveal how simple rules can produce complex network structures.  
-- CUG tests evaluate whether observed structure is surprising under a chosen null model.  
-- QAP handles dyadic dependencies and allows hypothesis testing on networks.  
-- MR-QAP supports multivariate modeling with permutation-based inference.  
-- These foundations prepare the ground for:
-  - **ERGMs (Part II)**  
-  - **SAOMs (Part III)**  
-
----
-
-These notes represent my personal understanding and do not reproduce course materials.
+These notes are intentionally concise so that the folder can serve as a **clean public record** of my coursework and as a reference for later network modeling projects.

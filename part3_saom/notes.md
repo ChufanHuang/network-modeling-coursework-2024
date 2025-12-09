@@ -92,77 +92,84 @@ Interpretation:
 - If $\beta_k < 0$, the configuration is **penalized**.
 
 ---
-
 ## 6. Example Effect Statistics
 
 Some examples from the lecture:
 
+---
+
 ### 6.1 Structural Effects
 
-- **Outdegree (density)**
-  $$
+- **Outdegree (density)**  
+  \[
   s_{\text{outdeg},i}(x) = \sum_j x_{ij}
-  $$
+  \]
 
-- **Reciprocity**
-  $$
+- **Reciprocity**  
+  \[
   s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji}
-  $$
+  \]
 
-- **Transitive triplets**
-  $$
+- **Transitive triplets**  
+  \[
   s_{\text{transTrip},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{ih}
-  $$
+  \]
 
-- **3-cycles**
-  $$
+- **3-cycles**  
+  \[
   s_{\text{cycle3},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{hi}
-  $$
+  \]
+
+---
 
 ### 6.2 Covariate-Based Effects
 
-Let $v_j$ be a dummy (e.g. $v_j = 1$ if $j$ is female):
+Let \( v_j \) be a dummy variable (e.g., \( v_j = 1 \) if \( j \) is female):
 
-- **Ego effect (actor $i$’s own value)**
-  $$
+- **Ego effect (actor \( i \)’s own value)**  
+  \[
   s_{\text{ego},i}(x) = v_i \sum_j x_{ij}
-  $$
+  \]
 
-- **Alter effect (preference for others with a certain value)**
-  $$
+- **Alter effect (preference for others with a certain value)**  
+  \[
   s_{\text{alter},i}(x) = \sum_j x_{ij} v_j
-  $$
+  \]
 
-- **Homophily effect**
-  $$
-  s_{\text{homo},i}(x) = \sum_j x_{ij} \mathbf{1}(v_i = v_j),
-  $$
-  where $\mathbf{1}(\cdot)$ is the indicator function.
+- **Homophily effect**  
+  \[
+  s_{\text{homo},i}(x) = \sum_j x_{ij} \mathbf{1}(v_i = v_j)
+  \]
+  where \( \mathbf{1}(\cdot) \) is the indicator function.
 
 ---
+
+
 
 ## 7. Choice Probability for Tie Changes
 
-Suppose actor $i$ has the opportunity to change one outgoing tie.  
-They can toggle a tie to any $j$, or possibly do nothing.  
-For a candidate network $x^{(ij)}$ (after toggling $i \to j$), define its objective:
+Suppose actor \( i \) has the opportunity to change one outgoing tie.  
+They can toggle a tie to any \( j \), or possibly do nothing.
 
-$$
-f(i, x^{(ij)}, \beta).
-$$
+For a candidate network \( x^{(ij)} \) (after toggling \( i \to j \)), define its objective:
 
-The **multinomial choice probability** of choosing $j$ is:
+\[
+f(i, x^{(ij)}, \beta)
+\]
 
-$$
+The **multinomial choice probability** of choosing \( j \) is:
+
+\[
 P(i \to j \mid x, \beta)
 =
-\frac{\exp\big( f(i, x^{(ij)}, \beta) \big)}
-{\sum_{k} \exp\big( f(i, x^{(ik)}, \beta) \big)}.
-$$
+\frac{\exp\!\left( f(i, x^{(ij)}, \beta) \right)}
+{\sum_{k} \exp\!\left( f(i, x^{(ik)}, \beta) \right)}
+\]
 
-Higher objective values $\Rightarrow$ higher probability of choosing that tie change.
+Higher objective values \( \Rightarrow \) higher probability of choosing that tie change.
 
 ---
+
 
 ## 8. Rate Function (How Often Actors Can Change Ties)
 
@@ -171,25 +178,26 @@ The **rate function** gives the expected number of opportunities per unit time.
 
 A simple specification:
 
-$$
+\[
 \tau_i(x, \gamma)
 =
-\exp\left( \gamma_0 + \sum_k \gamma_k\, r_{ki}(x) \right),
-$$
+\exp\!\left( \gamma_0 + \sum_k \gamma_k\, r_{ki}(x) \right)
+\]
 
-where $r_{ki}(x)$ are rate-related statistics and $\gamma$ are rate parameters.
+where \( r_{ki}(x) \) are rate-related statistics and \( \gamma \) are rate parameters.
 
-The **intensity** of changing tie $i \to j$ is then:
+The **intensity** of changing tie \( i \to j \) is then:
 
-$$
+\[
 \lambda_{ij}(x;\, \beta, \gamma)
 =
-\tau_i(x, \gamma) \cdot P(i \to j \mid x, \beta).
-$$
+\tau_i(x, \gamma) \cdot P(i \to j \mid x, \beta)
+\]
 
 This defines a **continuous-time Markov process** on the space of networks.
 
 ---
+
 
 ## 9. Panel Data Setup
 
@@ -257,57 +265,59 @@ $$
 This is solved iteratively using a Robbins–Monro type update.
 
 ---
-
 ## 13. Robbins–Monro Stochastic Approximation
 
-Given parameter estimate \(\hat{\theta}_i\) at iteration \(i\), with simulated statistics \(S_i\), the Robbins–Monro update takes the form:
+Given parameter estimate \(\hat{\theta}_i\) at iteration \(i\), with simulated statistics \(S_i\),  
+the Robbins–Monro update is:
 
-$$
+\[
 \hat{\theta}_{i+1}
 =
 \hat{\theta}_{i}
 -
-a_i\, D^{-1}\, ( S_i - s ),
-$$
+a_i\, D^{-1}\, ( S_i - s )
+\]
 
 where:
 
-- \(a_i\) is a step size decreasing toward 0,
-- \(D\) approximates the Jacobian (derivative of expected statistics with respect to parameters),
-- \(S_i\) is the simulated statistics vector at iteration \(i\),
-- \(s\) is the observed statistics vector.
+- \(a_i\): step size decreasing toward 0  
+- \(D\): approximation of the Jacobian (derivative of expected statistics w.r.t. parameters)  
+- \(S_i\): simulated statistics vector at iteration \(i\)  
+- \(s\): observed statistics vector  
 
-The algorithm converges when simulated and observed statistics become sufficiently close.
+The algorithm converges once simulated and observed statistics become sufficiently close.
 
 ---
 
 ## 14. Convergence Criteria
 
-For each effect \(k\), SAOM estimation uses a t-ratio:
+For each effect \(k\), SAOM estimation uses a *t-ratio*:
 
-$$
+\[
 t_{\text{conv},k}
 =
-\frac{ S_k - s_k }{ \mathrm{sd}(S_k) },
-$$
+\frac{ S_k - s_k }{ \mathrm{sd}(S_k) }
+\]
 
 where:
 
-- \(S_k\): mean of simulated statistics for effect \(k\),
-- \(s_k\): observed statistic,
-- \(\mathrm{sd}(S_k)\): standard deviation of simulated statistics.
+- \(S_k\): mean of simulated statistics for effect \(k\)  
+- \(s_k\): observed statistic  
+- \(\mathrm{sd}(S_k)\): standard deviation of simulated statistics  
 
-A common criterion is:
+A typical convergence threshold:
 
-- \(|t_{\text{conv},k}| \le 0.1\) for all \(k\).
+\[
+|t_{\text{conv},k}| \le 0.1 \quad \text{for all } k.
+\]
 
 Sometimes an overall discrepancy statistic is used:
 
-$$
-T = (S - s)^{\top} \Sigma^{-1} (S - s),
-$$
+\[
+T = (S - s)^{\top} \Sigma^{-1} (S - s)
+\]
 
-where \(\Sigma\) is the covariance matrix of the simulated statistics.
+where \(\Sigma\) is the covariance matrix of simulated statistics.
 
 ---
 
@@ -315,40 +325,44 @@ where \(\Sigma\) is the covariance matrix of the simulated statistics.
 
 With \(M\) observation waves, the parameter vector is:
 
-$$
-\theta = (\tau_1,\dots,\tau_{M-1},\ \beta_1,\dots,\beta_K),
-$$
+\[
+\theta = (\tau_1,\dots,\tau_{M-1},\ \beta_1,\dots,\beta_K)
+\]
 
 where:
 
-- \(\tau_m\): rate parameters for each period \([t_m, t_{m+1}]\),
-- \(\beta_k\): evaluation parameters for structural and covariate effects.
+- \(\tau_m\): rate parameters for period \([t_m, t_{m+1}]\)  
+- \(\beta_k\): evaluation parameters for structural/covariate effects  
 
-A typical rate statistic for period \(m\) is:
+A rate statistic for period \(m\) is:
 
-$$
+\[
 S_{\tau_m}
 =
 \sum_{i,j}
 \left|
 X_{ij}(t_{m+1}) - X_{ij}(t_m)
-\right|,
-$$
+\right|
+\]
 
 representing the number of tie changes in the interval.
 
-Evaluation statistics aggregate over all waves:
+Evaluation statistics aggregate across waves:
 
-$$
+\[
 S_k
 =
 \sum_{m=1}^{M}
-s_k\big( X(t_m) \big),
-$$
+s_k\!\left( X(t_m) \right)
+\]
 
-with \(s_k(\cdot)\) being the statistic for effect \(k\) on a single network.
+where \(s_k(\cdot)\) is the statistic for effect \(k\) on a single network.
 
 ---
+
+
+
+
 
 ## 16. Key Takeaways
 
