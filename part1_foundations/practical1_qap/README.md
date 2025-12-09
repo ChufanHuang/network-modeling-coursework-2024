@@ -52,61 +52,50 @@ Included networks and attributes:
 
 ## 4. Key Concepts (my notes)
 
-### QAP (bivariate)
+### 4.1 QAP (bivariate)
 
-Used to assess the relationship between two dyadic matrices.
-
-The model we conceptually examine is:
+Used to test relationships between two dyadic matrices.  
+We estimate something like:
 
 $$
 \text{advice}_{ij}
 =
-\beta_0
-+
-\beta_1\, \text{friendship}_{ij}
-+
-\varepsilon_{ij}
+\beta_0 + \beta_1\, \text{friendship}_{ij} + \varepsilon_{ij}
 $$
 
-QAP procedure:
+Steps:
 
-1. Compute the observed regression coefficient.  
-2. **Permute node labels** in the *dependent network*.  
-3. Re-estimate the coefficient for each permutation.  
-4. Compare the observed statistic to the permutation distribution.  
+1. Compute the regression coefficient between the two networks.  
+2. Permute the **node labels** of the dependent network (rows/columns simultaneously).  
+3. Recompute the coefficient for each permutation.  
+4. Compare the observed coefficient to the permutation-based null distribution.
 
-The p-value is the **fraction of permutations** that yield a coefficient as extreme as the observed one.
+Interpretation uses **empirical p-values** from the permutation distribution.
 
 ---
 
-### MR-QAP
+### 4.2 MR-QAP
 
-Extends QAP to multiple predictors:
+Extends QAP to multiple predictors, e.g.:
 
 - sender seniority  
 - receiver seniority  
 - same office  
 - same school  
-- friendship  
+- friendship ties  
 
-MR-QAP solves:
+MR-QAP handles:
 
-- dyadic dependence  
-- dyadic autocorrelation  
-- multicollinearity  
-- valid p-values via permutation  
+- non-independence of dyads  
+- multicollinearity among covariates  
+- permutation-based significance testing  
 
 ---
 
-### Why not use standard logistic regression?
+### 4.3 Why not use standard logistic regression?
 
-Because dyads are **not independent**.
-
-A standard GLM (logit/probit):
-
-- incorrectly assumes i.i.d. errors  
-- strongly **inflates significance**  
-- produces misleading inference for network data  
+Because dyads violate the i.i.d. assumption.  
+Standard GLM / logistic regression tends to **overestimate significance** and gives misleading p-values when applied directly to network ties.
 
 ---
 
@@ -114,76 +103,66 @@ A standard GLM (logit/probit):
 
 ---
 
-### Task 1 — Bivariate QAP: `advice ~ friendship`
+### **Task 1: QAP — advice ~ friendship**
 
-Conceptual model:
+Model:
 
 $$
 \text{advice}_{ij}
 =
-\beta_0
-+
-\beta_1\, \text{friendship}_{ij}
-+
-\varepsilon_{ij}
+\beta_0 + \beta_1 \,\text{friendship}_{ij} + \varepsilon_{ij}
 $$
 
-**My results:**
+**Result summary (my output):**
 
-- \( \beta_1 > 0 \), significant under 1000 permutations  
-- Interpretation: partners preferentially seek advice from their friends  
+- $\beta_1$ (friendship) was **positive** and significant under 1000 permutations.  
+- Interpretation: partners tend to seek advice from friends more than non-friends.
 
-Additional computations included:
+I also computed:
 
 - predicted probabilities  
-- confusion matrix (threshold = 0.5)  
+- confusion matrix at 0.5 threshold  
 - odds ratios  
-- comparison of permutation schemes (`qapy` vs. `qapspp`)  
+- comparison of permutation schemes (`qapy` vs. `qapspp`)
 
 ---
 
-### Task 2 — MR-QAP with multiple predictors
+### **Task 2: MR-QAP (multiple predictors)**
+
+Predictor list:
 
 | Variable             | Interpretation                                  |
-|---------------------|--------------------------------------------------|
-| `senioritySender`   | more senior lawyers give less advice             |
-| `seniorityReceiver` | more senior lawyers are asked more               |
-| `sameOffice`        | strong office homophily                          |
-| `sameSchool`        | weak / inconsistent effect                       |
-| `friendship`        | clear positive multiplexity                      |
+|----------------------|--------------------------------------------------|
+| `senioritySender`    | senior lawyers ask less advice                   |
+| `seniorityReceiver`  | senior lawyers are asked more                    |
+| `sameOffice`         | office proximity                                 |
+| `sameSchool`         | educational similarity                           |
+| `friendship`         | multiplexity (friendship → advice)               |
 
-**My findings:**
+**Main findings:**
 
-- `senioritySender`: negative  
-- `seniorityReceiver`: positive  
-- `sameOffice`: strong positive  
-- `sameSchool`: small / not significant  
-- `friendship`: strong positive and significant  
+- `senioritySender`: negative → senior lawyers ask less advice  
+- `seniorityReceiver`: positive → senior lawyers are asked more  
+- `sameOffice`: positive → strong office homophily  
+- `sameSchool`: weak or null  
+- `friendship`: strong, positive, significant  
 
-These align with prior findings from organizational network literature.
-
----
-
-### Task 3 — Permutation-based empirical p-value visualization
-
-For each coefficient:
-
-- computed empirical distribution from permutations  
-- overlaid observed statistic  
-- visually checked extremity relative to null distribution  
-
-This is essential because **QAP tests against a network-structured null**, not a classical regression null.
+These match well-known organizational patterns.
 
 ---
 
-### Task 4 — Standard logistic regression comparison
+### **Task 3: Empirical p-value visualization**
 
-Steps:
+For each coefficient I plotted:
 
-1. Convert adjacency matrix into dyad-level dataframe.  
-2. Attach covariates for sender and receiver.  
-3. Exclude diagonal pairs.  
-4. Estimate logistic regression:
+- permutation distribution  
+- observed statistic (vertical dashed line)
+
+This makes the significance visually interpretable.
+
+---
+
+### **Task 4: Standard logistic regression comparison**
 
 ```r
 mod0 <- glm(
@@ -195,12 +174,12 @@ mod0 <- glm(
 summary(mod0)
 ```
 
-Findings:
-
-- GLM produces *much smaller p-values* than MR-QAP  
-- Demonstrates **model misspecification** when independence is assumed  
+Comparing this model with MR-QAP highlights that ignoring dyadic dependence **inflates significance**.
 
 ---
+
+This practical introduced the core logic of QAP and MR-QAP for modeling dyadic dependencies in networks, using the Lazega law firm dataset to illustrate permutation-based inference vs. naïve i.i.d. regression.
+
 
 ## Summary
 
