@@ -37,7 +37,7 @@ They link **micro mechanisms** with **macro properties**.
 ### 2.1 Erdős–Rényi Random Graphs (ER)
 
 **Model:**  
-Each possible edge between \(N\) nodes appears **independently** with probability \(p\).
+Each possible edge between \(N\) nodes appears **independently** with probability $\(p\)$.
 
 ```math
 P(X = x) = p^{m(x)} (1-p)^{M - m(x)}
@@ -45,13 +45,13 @@ P(X = x) = p^{m(x)} (1-p)^{M - m(x)}
 
 Where:
 
-- $\(m(x)\)$: number of realized edges in network \(x\)
-- $\(M = \frac{N(N-1)}{2}\)$ (undirected, no self-loops), or \(M = N(N-1)\) (directed)
+- $\m(x)\$: number of realized edges in network \(x\)
+- $\(M = \frac{N(N-1)}{2}\)$ (undirected, no self-loops), or $\M = N(N-1)\$ (directed)
 
 **Assumptions:**
 
 - All dyads are **independent**
-- All dyads have the **same probability** \(p\)
+- All dyads have the **same probability** $\(p\)$
 
 **Consequences:**
 
@@ -105,7 +105,7 @@ So CUG tests tell us whether a pattern (like high clustering or strong centraliz
 Standard regression assumes observations are **independent**.  
 In network data, dyads (pairs of nodes) are typically **dependent**:
 
-- If \(i\) is friends with \(j\), that may influence ties with \(k\)
+- If $\(i\)$ is friends with $\(j\)$, that may influence ties with $\(k\)$
 - Triangles, reciprocity, and popularity all create dependencies
 
 **Quadratic Assignment Procedures (QAP)** address this by:
