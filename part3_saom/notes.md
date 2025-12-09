@@ -76,9 +76,9 @@ These mechanisms appear through **effect statistics** $s_{ki}(x)$.
 
 When actor $i$ considers changing a tie, the **objective function** is:
 
-$$
+$
 f(i, x, \beta) = \sum_k \beta_k\, s_{ki}(x),
-$$
+$
 
 where:
 
@@ -100,10 +100,10 @@ Some examples from the lecture:
 ### 6.1 Structural Effects
 
 - **Outdegree (density)**  
-  $$ s_{\text{outdeg},i}(x) = \sum_j x_{ij} $$
+  $ s_{\text{outdeg},i}(x) = \sum_j x_{ij} $
 
 - **Reciprocity**  
-  $$ s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji} $$
+  $ s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji} $
 
 - **Transitive triplets**  
   $$ s_{\text{transTrip},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{ih} $$
