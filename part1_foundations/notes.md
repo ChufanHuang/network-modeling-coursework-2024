@@ -65,7 +65,7 @@ Where:
 
 ### 2.2 Configuration-Type Models
 
-These models fix (or approximate) the **degree sequence**.
+These models fix (or approximate) the degree sequence.
 
 Examples:
 
