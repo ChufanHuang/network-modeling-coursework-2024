@@ -73,80 +73,106 @@ These mechanisms appear through **effect statistics** $s_{ki}(x)$.
 
 ## 5. Objective Function
 
-When actor $i$ considers changing a tie, the **objective function** is:
+When actor \(i\) considers changing a tie, the **objective function** is:
 
-$
-f(i, x, \beta) = \sum_k \beta_k\, s_{ki}(x),
-$
+```math
+f(i, x, \beta) = \sum_k \beta_k\, s_{ki}(x)
+```
 
 where:
 
-- $x$ is the current network,
-- $s_{ki}(x)$ is the value of effect $k$ for actor $i$ in network $x$,
-- $\beta_k$ is the parameter measuring the strength / direction of effect $k$.
+- \(x\) is the current network,  
+- \(s_{ki}(x)\) is the value of effect \(k\) for actor \(i\) in network \(x\),  
+- \(\beta_k\) is the parameter measuring the strength and direction of effect \(k\).
 
 Interpretation:
 
-- If $\beta_k > 0$ and $s_{ki}(x)$ increases, the configuration becomes **more attractive**.
-- If $\beta_k < 0$, the configuration is **penalized**.
+- If \(\beta_k > 0\) and \(s_{ki}(x)\) increases, the configuration becomes **more attractive**.  
+- If \(\beta_k < 0\), the configuration is **penalized**.
+
+
 
 ## 6. Example Effect Statistics
 
-Some examples from the lecture:
+Some examples from the lecture.
 
 
 
 ### 6.1 Structural Effects
 
-- **Outdegree (density)**  
-  $ s_{\text{outdeg},i}(x) = \sum_j x_{ij} $
+**Outdegree (density)**  
 
-- **Reciprocity**  
-  $ s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji} $
+```math
+s_{\text{outdeg},i}(x) = \sum_j x_{ij}
+```
 
-- **Transitive triplets**  
-  $$ s_{\text{transTrip},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{ih} $$
+**Reciprocity**  
 
-- **3-cycles**  
-  $$ s_{\text{cycle3},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{hi} $$
+```math
+s_{\text{recip},i}(x) = \sum_j x_{ij} x_{ji}
+```
+
+**Transitive triplets**  
+
+```math
+s_{\text{transTrip},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{ih}
+```
+
+**3-cycles**  
+
+```math
+s_{\text{cycle3},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{hi}
+```
 
 
 
 ### 6.2 Covariate-Based Effects
 
-Let $v_j$ be a dummy variable (e.g., $v_j = 1$ if $j$ is female):
+Let \(v_j\) be a dummy variable (e.g., \(v_j = 1\) if \(j\) is female).
 
-- **Ego effect (actor $i$’s own value)**  
-  $$ s_{\text{ego},i}(x) = v_i \sum_j x_{ij} $$
+**Ego effect (actor \(i\)’s own value)**  
 
-- **Alter effect (preference for others with a certain value)**  
-  $$ s_{\text{alter},i}(x) = \sum_j x_{ij} v_j $$
+```math
+s_{\text{ego},i}(x) = v_i \sum_j x_{ij}
+```
 
-- **Homophily effect**  
-  $$ s_{\text{homo},i}(x) = \sum_j x_{ij} \mathbf{1}(v_i = v_j) $$  
-  where $\mathbf{1}(\cdot)$ is the indicator function.
+**Alter effect (preference for others with a certain value)**  
+
+```math
+s_{\text{alter},i}(x) = \sum_j x_{ij} v_j
+```
+
+**Homophily effect**  
+
+```math
+s_{\text{homo},i}(x) = \sum_j x_{ij}\, \mathbf{1}(v_i = v_j)
+```
+
+where \(\mathbf{1}(\cdot)\) is the indicator function.
 
 
 
 ## 7. Choice Probability for Tie Changes
 
-Suppose actor $i$ has the opportunity to change one outgoing tie.  
-They can toggle a tie to any $j$, or possibly do nothing.
+Suppose actor \(i\) has the opportunity to change one outgoing tie.  
+They can toggle a tie to any \(j\), or possibly do nothing.
 
-For a candidate network $x^{(ij)}$ (after toggling $i \to j$), define its objective:
+For a candidate network \(x^{(ij)}\) (after toggling \(i \to j\)), define its objective:
 
-$$ f(i, x^{(ij)}, \beta) $$
+```math
+f(i, x^{(ij)}, \beta)
+```
 
-The **multinomial choice probability** of choosing $j$ is:
+The **multinomial choice probability** of choosing \(j\) is:
 
-$$
+```math
 P(i \to j \mid x, \beta)
 =
 \frac{\exp\!\left( f(i, x^{(ij)}, \beta) \right)}
 {\sum_{k} \exp\!\left( f(i, x^{(ik)}, \beta) \right)}
-$$
+```
 
-Higher objective values $\Rightarrow$ higher probability of choosing that tie change.
+Higher objective values \(\Rightarrow\) higher probability of choosing that tie change.
 
 
 
@@ -157,25 +183,23 @@ The **rate function** gives the expected number of opportunities per unit time.
 
 A simple specification:
 
-$$
+```math
 \tau_i(x, \gamma)
 =
 \exp\!\left( \gamma_0 + \sum_k \gamma_k\, r_{ki}(x) \right)
-$$
+```
 
-where $r_{ki}(x)$ are rate-related statistics and $\gamma$ are rate parameters.
+where \(r_{ki}(x)\) are rate-related statistics and \(\gamma\) are rate parameters.
 
-The **intensity** of changing tie $i \to j$ is then:
+The **intensity** of changing tie \(i \to j\) is then:
 
-$$
+```math
 \lambda_{ij}(x;\, \beta, \gamma)
 =
-\tau_i(x, \gamma) \cdot P(i \to j \mid x, \beta)
-$$
+\tau_i(x, \gamma)\, P(i \to j \mid x, \beta)
+```
 
 This defines a **continuous-time Markov process** on the space of networks.
-
-
 
 
 
