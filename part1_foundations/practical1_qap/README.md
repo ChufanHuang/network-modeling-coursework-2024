@@ -57,13 +57,11 @@ Included networks and attributes:
 Used to test relationships between two dyadic matrices.  
 We estimate something like:
 
-
+```markdown
 ```math
-\mathrm{advice}_{ij}
+\text{advice}_{ij}
 =
-\beta_0 + \beta_1\, \mathrm{friendship}_{ij} + \varepsilon_{ij}
-
-
+\beta_0 + \beta_1 \,\text{friendship}_{ij} + \varepsilon_{ij}
 Steps:
 
 1. Compute the regression coefficient between the two networks.  
