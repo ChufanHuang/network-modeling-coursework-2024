@@ -1,7 +1,7 @@
 # Part III — Stochastic Actor-Oriented Models (SAOMs)
 *Notes based on my understanding of the SAOM lecture (Nov 11, 2024).*
 
----
+
 
 ## 1. What Are SAOMs?
 
@@ -14,7 +14,7 @@ Key ideas:
 - Time is modeled as **continuous**, but we only observe a **few discrete waves**.
 - Estimation is typically done with **RSiena**.
 
----
+
 
 ## 2. Actor-Oriented Perspective
 
@@ -31,7 +31,7 @@ SAOM assumes:
 - The actor evaluates **how attractive** different possible networks are.
 - The actor chooses the change that **improves** their objective function (stochastically).
 
----
+
 
 ## 3. Continuous-Time Network Change
 
@@ -47,7 +47,7 @@ Between two observed waves $x(t_m)$ and $x(t_{m+1})$, the model assumes:
 - Each micro-step toggles at most **one tie** (add or drop).
 - Decisions are made by individual actors.
 
----
+
 
 ## 4. Social Mechanisms Captured by SAOM
 
@@ -70,7 +70,6 @@ Typical mechanisms:
 
 These mechanisms appear through **effect statistics** $s_{ki}(x)$.
 
----
 
 ## 5. Objective Function
 
@@ -95,7 +94,7 @@ Interpretation:
 
 Some examples from the lecture:
 
----
+
 
 ### 6.1 Structural Effects
 
@@ -111,7 +110,7 @@ Some examples from the lecture:
 - **3-cycles**  
   $$ s_{\text{cycle3},i}(x) = \sum_{j,h} x_{ij} x_{jh} x_{hi} $$
 
----
+
 
 ### 6.2 Covariate-Based Effects
 
@@ -127,7 +126,7 @@ Let $v_j$ be a dummy variable (e.g., $v_j = 1$ if $j$ is female):
   $$ s_{\text{homo},i}(x) = \sum_j x_{ij} \mathbf{1}(v_i = v_j) $$  
   where $\mathbf{1}(\cdot)$ is the indicator function.
 
----
+
 
 ## 7. Choice Probability for Tie Changes
 
@@ -149,7 +148,7 @@ $$
 
 Higher objective values $\Rightarrow$ higher probability of choosing that tie change.
 
----
+
 
 ## 8. Rate Function (How Often Actors Can Change Ties)
 
@@ -176,7 +175,7 @@ $$
 
 This defines a **continuous-time Markov process** on the space of networks.
 
----
+
 
 
 
