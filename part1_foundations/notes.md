@@ -46,7 +46,7 @@ P(X = x) = p^{m(x)} (1-p)^{M - m(x)}
 Where:
 
 - $\m(x)\$: number of realized edges in network \(x\)
-- $\(M = \frac{N(N-1)}{2}\)$ (undirected, no self-loops), or $\M = N(N-1)\$ (directed)
+- $(M = \frac{N(N-1)}{2}\)$ (undirected, no self-loops), or $M = N(N-1)\$ (directed)
 
 **Assumptions:**
 
