@@ -57,6 +57,7 @@ Included networks and attributes:
 Used to test relationships between two dyadic matrices.  
 We estimate something like:
 
+```math
 $$
 \text{advice}_{ij}
 =
