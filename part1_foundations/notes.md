@@ -21,9 +21,9 @@ Where:
 
 A good network model helps answer:
 
-- Why does a given network look the way it does?
-- Which micro-level mechanisms shape its structure?
-- How do individual decisions create macro-level network patterns?
+- Why does a given network look the way it does?  
+- Which micro-level mechanisms shape its structure?  
+- How do individual decisions create macro-level network patterns?  
 
 
 
@@ -57,9 +57,11 @@ Where:
 
 - Randomly distributed ties  
 - Binomial / Poisson-like degree distribution  
-- Low clustering (very few triangles)  
+- Low clustering  
 - No community structure  
-- Mainly useful as a **null model** or baseline  
+- Mainly useful as a **null model**  
+
+ 
 
 
 
