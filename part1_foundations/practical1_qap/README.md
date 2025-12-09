@@ -59,7 +59,7 @@ We estimate something like:
 
 ```math
 `advice_ij = b0 + b1 * friendship_ij + error_ij`
-```
+
 
 Steps:
 
@@ -104,7 +104,7 @@ Standard GLM / logistic regression tends to **overestimate significance** and gi
 ### **Task 1: QAP — advice ~ friendship**
 
 Model:
-
+```math
 `advice_ij = b0 + b1 * friendship_ij + error_ij`
 
 **Result summary (my output):**
